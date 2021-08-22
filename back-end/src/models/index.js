@@ -16,10 +16,15 @@ sequelize.sync({
 });
 
 const db = {};
-
+db.users = require("./user-model")(sequelize, Sequelize);
 db.posts = require("./post-model")(sequelize, Sequelize);
 db.comments = require("./comment-model")(sequelize, Sequelize);
 
+//Relations Users x Posts
+db.users.hasMany(db.posts);
+db.posts.belongsTo(db.users);
+
+//Relations Posts x Comments
 db.posts.hasMany(db.comments);
 db.comments.belongsTo(db.posts);
 

@@ -12,18 +12,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static
-//const path = require('path');
 app.use(express.static("public"));
 
 // Routes
 const index = require("./routes/index.js");
 const post = require("./routes/post-route");
 const comment = require("./routes/comment-route");
+const user = require("./routes/users-route");
 
 
 app.use("/", index);
 app.use("/posts", post);
 app.use("/comments", comment);
+app.use("/users", user);
 
 app.use((req, res, next) => {
   res.status(404).send({

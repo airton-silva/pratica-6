@@ -2,8 +2,8 @@ const postRepo = require("../repositories/post-repo");
 
 class PostService {
 
-  add(post) {
-    return postRepo.save(post);
+  add(userId,post) {
+    return postRepo.save(userId, post);
   }
 
   getAll() {

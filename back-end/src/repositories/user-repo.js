@@ -1,16 +1,13 @@
 const db = require('../models');
-const Post = db.posts;
-const Comment = db.coment;
-const {Op} = require('sequelize');
+const User = db.users;
 
-exports.save = async (userId, post) => {
-  return await Post.create({
-    title: post.title,
-    body: post.body,
-    userId: userId,
+exports.save = async (user) => {
+  return await User.create({
+    email: user.email,
+    password: user.password,
   })
     .then((result) => {
-      console.log("Created Post", + JSON.stringify(result));
+      console.log("Created User", + JSON.stringify(result));
       return result;
     })
     .catch((err) => {
@@ -20,34 +17,32 @@ exports.save = async (userId, post) => {
 };
 
 exports.findAll = async () => {
-  const result = await Post.findAll();
+  const result = await User.findAll();
   return result;                                                                                                                
 };
 
 exports.findOne = async (id) => {
-  return await Post.findByPk(id, {
+  return await User.findByPk(id, {
     include: [
       {
         model: Comment,
-        attributes: { exclude: ["postId"] },
+        attributes: { exclude: ["userId"] },
       },
     ],
   })
-    .then((post) => {
-      return post;
+    .then((user) => {
+      return user;
     })
     .catch((err) => {
       console.log("Error: ", err);
     });
 }
 
-exports.update = async (id, post) => {
-  console.log(post.userId);
-  return await Post.update(
+exports.update = async (id, user) => {
+  return await User.update(
     {
-      title: post.title,
-      body: post.body,
-      userId: post.userId
+      email: user.email,
+      password: user.password,
     },
     {
       where: {
@@ -57,7 +52,7 @@ exports.update = async (id, post) => {
     }
   )
     .then((result) => {
-      console.log("Update post: " + JSON.stringify(result));
+      console.log("Update user: " + JSON.stringify(result));
       return result[1][0]; 
     })
     .catch((err) => {
@@ -67,7 +62,7 @@ exports.update = async (id, post) => {
 };
 
 exports.delete = async (id) => {
-  await Post.destroy({
+  await User.destroy({
     where: {
       id: id,
     },

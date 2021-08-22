@@ -1,8 +1,9 @@
 
 class Post {
-    constructor(title, body) {
+    constructor(title, body, userId) {
       this.title = title;
       this.body = body;
+      this.userId = userId;
     }
   }
   

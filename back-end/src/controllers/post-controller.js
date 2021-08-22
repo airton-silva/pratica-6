@@ -15,7 +15,8 @@ exports.post = async (req, res) => {
     res.status(400).send();
   } else {
     let post = await postService.add(
-      new Post(req.body.title, req.body.body)
+      req.body.userId,
+      new Post(req.body.title, req.body.body, req.body.userId)
     );
 
     if (post != null) {
@@ -27,13 +28,13 @@ exports.post = async (req, res) => {
 };
 
 exports.put = async (req, res) => {
-
+  
   if (req.body.title.length < 3 || req.body.body < 5) {
     res.status(400).send();
   } else {
     let post = await postService.update(
       req.params.id, 
-      new Post(req.body.title, req.body.body)
+      new Post(req.body.title, req.body.body, req.body.userId)
     );
 
     if (post != null) {
