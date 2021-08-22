@@ -1,10 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const app = express();
+//const cookieParser = require("cookie-parser");
+//const sessions = require("express-session");
+require("dotenv/config");
+const app = express();;
 const port = 3000;
 
-
-app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
+app.use(cors({ credentials: true, origin: true }));
+// app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -14,13 +17,13 @@ app.use(express.static("public"));
 
 // Routes
 const index = require("./routes/index.js");
-const funcionario = require("./routes/funcionario-route");
-//const upload = require("./routes/upload-route");
+const post = require("./routes/post-route");
+const comment = require("./routes/comment-route");
 
 
 app.use("/", index);
-app.use("/funcionarios", funcionario);
-//app.use("/public/uploads", funcionario);
+app.use("/posts", post);
+app.use("/comments", comment);
 
 app.use((req, res, next) => {
   res.status(404).send({
