@@ -10,6 +10,10 @@ class UserService {
     return userRepo.findAll();
   }
 
+  getAuth(email, password) {
+    return userRepo.findAuth(email, password);
+  }
+
   getById(id) {
     return userRepo.findOne(id);
   }

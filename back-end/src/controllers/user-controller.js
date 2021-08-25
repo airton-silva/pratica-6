@@ -6,6 +6,11 @@ exports.get = async (req, res) => {
   res.json(await userService.getAll());
 };
 
+exports.getAuth = async (req, res) => {
+  console.log(req);
+  res.json(await userService.getAuth(req.body.email, req.body.password));
+}
+
 exports.getById = async (req, res) => {
   res.json(await userService.getById(req.params.id));
 };
@@ -15,7 +20,10 @@ exports.post = async (req, res) => {
     res.status(400).send();
   } else {
     let user = await userService.add(
-      new User(req.body.email, req.body.password)
+      new User(req.body.email, req.body.password,
+                req.body.country, req.body.occupation, 
+                req.body.name, req.body.birthday, req.body.fone,
+              )
     );
 
     if (user != null) {
@@ -33,7 +41,10 @@ exports.put = async (req, res) => {
   } else {
     let user = await userService.update(
       req.params.id, 
-      new User(req.body.email, req.body.password)
+      new User(req.body.email, req.body.password,
+                req.body.country, req.body.occupation, 
+                req.body.name, req.body.birthday, req.body.fone,
+              )
     );
 
     if (user != null) {

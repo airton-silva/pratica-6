@@ -7,6 +7,21 @@ module.exports = (sequelize, DataTypes) => {
             },
             password: {
                 type: DataTypes.STRING,
+            },
+            country:{
+                type: DataTypes.STRING,
+            },
+            occupation:{
+                type: DataTypes.STRING,
+            },
+            name:{
+                type: DataTypes.STRING,
+            },
+            birthday:{
+                type: DataTypes.STRING,
+            },
+            fone:{
+                type: DataTypes.STRING,
             }
         },
         {

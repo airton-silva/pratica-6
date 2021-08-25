@@ -5,6 +5,11 @@ exports.save = async (user) => {
   return await User.create({
     email: user.email,
     password: user.password,
+    country: user.country,
+    occupation: user.occupation,
+    name: user.name,
+    birthday: user.birthday,
+    fone: user.fone,
   })
     .then((result) => {
       console.log("Created User", + JSON.stringify(result));
@@ -14,6 +19,17 @@ exports.save = async (user) => {
       console.log("Erro" + err);
     })
   
+};
+
+exports.findAuth = async (email, password) =>{
+//   console.log(email, password)
+  return result = await User.findOne({
+    where: {
+      email: email,
+      password: password,
+    },
+  });
+      
 };
 
 exports.findAll = async () => {
@@ -43,6 +59,11 @@ exports.update = async (id, user) => {
     {
       email: user.email,
       password: user.password,
+      country: user.country,
+      occupation: user.occupation,
+      name: user.name,
+      birthday: user.birthday,
+      fone: user.fone,
     },
     {
       where: {
