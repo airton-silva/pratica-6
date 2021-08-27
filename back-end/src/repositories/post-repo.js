@@ -1,9 +1,11 @@
 const db = require('../models');
 const Post = db.posts;
-const Comment = db.coment;
+const Comment = db.comments;
+const User = db.users;
 const {Op} = require('sequelize');
 
 exports.save = async (userId, post) => {
+  console.log(post);
   return await Post.create({
     title: post.title,
     body: post.body,
@@ -25,20 +27,25 @@ exports.findAll = async () => {
 };
 
 exports.findOne = async (id) => {
-  return await Post.findByPk(id, {
+   return await Post.findByPk(id, {
     include: [
       {
         model: Comment,
         attributes: { exclude: ["postId"] },
       },
+      {
+        model: User,
+        attributes: { exclude: ["userId"] },
+      },
     ],
   })
-    .then((post) => {
-      return post;
-    })
-    .catch((err) => {
-      console.log("Error: ", err);
-    });
+  .then((post) => {
+    //console.log(post)
+    return post;
+  })
+  .catch((err) => {
+    console.log("Error: ", err);
+  });
 }
 
 exports.update = async (id, post) => {

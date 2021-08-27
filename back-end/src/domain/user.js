@@ -1,6 +1,6 @@
 
 class User {
-    constructor(email, password, country,occupation, name, birthday, fone  ) {
+    constructor(email, password, country,occupation, name, birthday, fone, image  ) {
       this.email = email;
       this.password = password;
       this.country = country;
@@ -8,6 +8,7 @@ class User {
       this.name = name;
       this.birthday = birthday;
       this.fone = fone;
+      this.image = image;
     }
   }
   

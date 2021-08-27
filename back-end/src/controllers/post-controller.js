@@ -11,7 +11,8 @@ exports.getById = async (req, res) => {
 };
 
 exports.post = async (req, res) => {
-  if (req.body.title.length < 3 || req.body.body < 5) {
+
+  if (req.body.title.length < 3 || req.body.body.length < 5) {
     res.status(400).send();
   } else {
     let post = await postService.add(
@@ -19,7 +20,7 @@ exports.post = async (req, res) => {
       new Post(req.body.title, req.body.body, req.body.userId)
     );
 
-    if (post != null) {
+    if (post) {
       res.status(201).json(post);
     } else {
       res.status(409).send();
@@ -29,7 +30,7 @@ exports.post = async (req, res) => {
 
 exports.put = async (req, res) => {
   
-  if (req.body.title.length < 3 || req.body.body < 5) {
+  if (req.body.title.length < 3 || req.body.body.length < 5) {
     res.status(400).send();
   } else {
     let post = await postService.update(

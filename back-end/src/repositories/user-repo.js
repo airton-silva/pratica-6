@@ -1,5 +1,7 @@
 const db = require('../models');
 const User = db.users;
+const Comment = db.comments;
+const Post = db.posts;
 
 exports.save = async (user) => {
   return await User.create({
@@ -10,6 +12,7 @@ exports.save = async (user) => {
     name: user.name,
     birthday: user.birthday,
     fone: user.fone,
+    image: user.image
   })
     .then((result) => {
       console.log("Created User", + JSON.stringify(result));
@@ -41,7 +44,7 @@ exports.findOne = async (id) => {
   return await User.findByPk(id, {
     include: [
       {
-        model: Comment,
+        model: Post,
         attributes: { exclude: ["userId"] },
       },
     ],

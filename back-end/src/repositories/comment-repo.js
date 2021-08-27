@@ -1,10 +1,11 @@
 const db = require("../models");
 const Comment = db.comments;
 
-exports.save = async (postId, comment) => {
+exports.save = async (postId, userId, comment) => {
   return Comment.create({
     description: comment.description,
     postId: postId,
+    userId: userId
   })
     .then((result) => {
       console.log("Created comment: " + JSON.stringify(result));

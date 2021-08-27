@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
             },
             fone:{
                 type: DataTypes.STRING,
+            },
+            image:{
+                type: DataTypes.STRING,
             }
         },
         {

@@ -28,4 +28,8 @@ db.posts.belongsTo(db.users);
 db.posts.hasMany(db.comments);
 db.comments.belongsTo(db.posts);
 
+//Relations Users x Comments
+db.users.hasMany(db.comments);
+db.comments.belongsTo(db.users);
+
 module.exports = db;

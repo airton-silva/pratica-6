@@ -1,8 +1,8 @@
 const commentRepo = require("../repositories/comment-repo");
 
 class CommentService {
-  add(postId, comment) {
-    return commentRepo.save(postId, comment);
+  add(postId, userId, comment) {
+    return commentRepo.save(postId, userId, comment);
   }
 
   getAll() {

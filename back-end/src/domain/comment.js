@@ -1,6 +1,7 @@
 class Comment {
-    constructor(description) {
+    constructor(description, userId) {
       this.description = description;
+      this.userId = userId;
     }
   }
   

@@ -14,6 +14,7 @@ exports.post = async (req, res) => {
   res.json(
     await commentService.add(
       req.body.postId,
+      req.body.userId,
       new Comment(req.body.description)
     )
   );
